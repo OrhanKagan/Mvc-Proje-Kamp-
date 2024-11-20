@@ -1,0 +1,98 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <title>Mvc Proje Kampı</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/login-form-20/css/style.css">
+    <link href="~/AdminLTE-3.0.4/css/aos.css" rel="stylesheet" />
+    
+</head>
+<body class="img js-fullheight" style="background-image: url(/AdminLTE-3.0.4/login-form-20/images/bg.jpg);">
+    <section class="ftco-section">
+        <div class="konteynır">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Mvc Proje Kampı Yazar Girişi</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center">Hesabın Varmı?</h3>
+                        @using (Html.BeginForm("WriterLogin", "Login", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <input type="text" name="WriterMail" class="form-control" placeholder="Mail Adresin" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="password-field" name="WriterPassword" type="password" class="form-control" placeholder="Şifren" required>
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="submitButton" disabled onclick="submitForm()" class="form-control btn btn-primary submit px-3">Giriş Yap</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50">
+                                    <a href="#" style="color:#fff"><b>Hesap Oluştur</b></a>
+                                </div>
+                                <div class="w-50 text-md-right">
+                                    <a href="#" style="color: #fff">Şifremi Unuttum</a>/<a href="/Login/Index/" style="color: #fff">Admin Giriş</a>
+                                </div>
+                            </div>
+
+                            <div class="recaptcha-container" style="width:200px">
+                                <label class="checkbox" style="margin-top:10px">
+                                    <input type="checkbox" id="robotCheckbox" name="robotCheck" onchange="toggleButton()">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <span class="text"><b>Robot Değilim</b></span>
+                                <img class="logo" src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA logo">
+                            </div>
+
+                            <!-- Gönder Butonu -->
+                            <script>
+                                function toggleButton() {
+                                    // "Robot Değilim" checkbox'ını kontrol et
+                                    const robotCheckbox = document.getElementById('robotCheckbox');
+                                    const submitButton = document.getElementById('submitButton');
+
+                                    // Eğer "Robot Değilim" checkbox'ı işaretli ise buton aktif olur
+                                    submitButton.disabled = !robotCheckbox.checked;
+
+                                    // Butonun stilini güncelle
+                                    if (robotCheckbox.checked) {
+                                        submitButton.style.backgroundColor = '#34a853';
+                                        submitButton.style.cursor = 'pointer';
+                                    } else {
+                                        submitButton.style.backgroundColor = '#dcdcdc';
+                                        submitButton.style.cursor = 'not-allowed';
+                                    }
+                                }
+                            </script>
+                        }
+
+                        <p class="w-100 text-center">&mdash; Veya sosyal Medeya İle Giriş Yapın &mdash;</p>
+                        <div class="social d-flex text-center">
+                            <a href="#" class="px-2 py-2 mr-md-1 rounded"><i class="fa fa-github" style="font-size:24px"></i>       Github</a>
+                            <a href="#" class="px-2 py-2 ml-md-1 rounded"><i class="fa fa-linkedin" style="font-size:24px; color:royalblue"></i>       Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="~/AdminLTE-3.0.4/login-form-20/js/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/login-form-20/js/popper.js"></script>
+    <script src="~/AdminLTE-3.0.4/login-form-20/js/bootstrap.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/login-form-20/js/main.js"></script>
+</body>
+</html>

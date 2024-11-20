@@ -1,0 +1,38 @@
+﻿@using EntityLayer.Concrete
+@model List<Content>
+@{
+    ViewBag.Title = "GetAllContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Başlıklar
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        @Html.TextBox("p")
+                        <div class="input-group-append">
+                            <div>
+                                <button type="submit" style="background-color:royalblue"><i class="fas fa-search" style="color:white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContentValue</td>
+            </tr>
+
+        }
+    </table>
+}

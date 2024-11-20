@@ -1,0 +1,56 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<h1>Yeni Kategori Ekleme Sayfası</h1>
+<br />
+
+@using (Html.BeginForm("AddCategory", "AdminCategory", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Kategori Adı")
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", maxlength = 20 })
+        @Html.ValidationMessageFor(x => x.CategoryName, null, new { @class = "validation-message" })
+        <br /><br />
+        @Html.Label("Açıklama Giriniz")
+        @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control", maxlength = 200 })
+        @Html.ValidationMessageFor(x => x.CategoryDescription, null, new { @class = "validation-message" })
+        <br /><br />
+        <button class="btn btn-info" id="btn1" type="button">Kategoriyi Kaydet</button>
+    </div>
+}
+
+<script>
+    $('#btn1').click(function () {
+        // Hata mesajlarını kontrol et
+        var hasError = false;
+        $('.validation-message').each(function () {
+            if ($(this).text().trim().length > 0) {
+                hasError = true;
+            }
+        });
+
+        if (hasError) {
+            swal({
+                title: "Hata!",
+                text: "Formda hata var! Lütfen tüm alanları doğru şekilde doldurun.",
+                icon: "error",
+            });
+        } else {
+            swal({
+                title: "Başarılı!",
+                text: "Bu kategori başarıyla eklendi.",
+                icon: "success",
+            }).then((willSubmit) => {
+                if (willSubmit) {
+                    $('form').submit();
+                }
+            });
+        }
+    });
+</script>
